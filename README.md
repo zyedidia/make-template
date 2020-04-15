@@ -16,3 +16,9 @@ Possible options include
 * `PIE=0`: disable generation of position independent executables.
 
 These options can also be set directly inside the Makefile.
+
+Possible targets are
+
+* `all`: builds all programs.
+* `format`: formats source files with `clang-format` (according to the style defined in the `.clang-format` file).
+* `clean`: removes build files and executables.

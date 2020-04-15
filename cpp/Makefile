@@ -5,6 +5,10 @@ ALLPROGRAMS = $(PROGRAMS)
 
 include rules.mk
 
+INCLUDEDIR = include
+INCLUDES = $(INCLUDEDIR)
+CXXFLAGS += -I$(INCLUDES)
+
 %.o: %.cc $(BUILDSTAMP)
 	$(CXX) $(CXXFLAGS) $(O) $(DEPCFLAGS) -o $@ -c $<
 
@@ -14,4 +18,7 @@ main: main.o
 clean:
 	rm -rf $(ALLPROGRAMS) *.o $(DEPSDIR)
 
-.PHONY: all clean
+format:
+	clang-format -i $(wildcard *.cc) $(wildcard $(INCLUDEDIR)/*.hh)
+
+.PHONY: all clean format

@@ -3,8 +3,11 @@ all: $(PROGRAMS)
 
 ALLPROGRAMS = $(PROGRAMS)
 
-COMPILER = clang
 include rules.mk
+
+INCLUDEDIR = include
+INCLUDES = $(INCLUDEDIR)
+CFLAGS += -I$(INCLUDES)
 
 %.o: %.c $(BUILDSTAMP)
 	$(CC) $(CFLAGS) $(O) $(DEPCFLAGS) -o $@ -c $<
@@ -15,4 +18,7 @@ main: main.o
 clean:
 	rm -rf $(ALLPROGRAMS) *.o $(DEPSDIR)
 
-.PHONY: all clean
+format:
+	clang-format -i $(wildcard *.c) $(wildcard $(INCLUDEDIR)/*.h)
+
+.PHONY: all clean format
