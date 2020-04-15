@@ -3,7 +3,7 @@ Makefile templates for simple C and C++ programs.
 Usage:
 
 ```
-make [OPTIONS]
+make [TARGET] [OPTIONS]
 ```
 
 Possible options include
@@ -19,6 +19,20 @@ These options can also be set directly inside the Makefile.
 
 Possible targets are
 
-* `all`: builds all programs.
+* `all` (default): builds all programs.
 * `format`: formats source files with `clang-format` (according to the style defined in the `.clang-format` file).
 * `clean`: removes build files and executables.
+
+Recommendation: for faster builds, set your `MAKEFLAGS` environment variable to use the full number of logical cores on your machine:
+
+Linux:
+
+```
+export MAKEFLAGS="-j$(grep -c ^processor /proc/cpuinfo)"
+```
+
+MacOS:
+
+```
+export MAKEFLAGS="-j$(sysctl -n hw.ncpu)"
+```
