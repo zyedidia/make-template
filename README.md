@@ -14,6 +14,7 @@ Possible options include
 * `PTHREAD=1`: link with pthread library.
 * `PROFILE=1`: write profile information for use with the analysis program `gprof` (`-pg`).
 * `PIE=0`: disable generation of position independent executables.
+* `FAST=1`: enables optimization level 3 (`-O3`), and generates CPU-specific code (`-march=native`), and enables some other options that might slightly increase performance.
 
 These options can also be set directly inside the Makefile.
 
@@ -23,7 +24,7 @@ Possible targets are
 * `format`: formats source files with `clang-format` (according to the style defined in the `.clang-format` file).
 * `clean`: removes build files and executables.
 
-Recommendation: for faster builds, set your `MAKEFLAGS` environment variable to use the full number of logical cores on your machine:
+Recommendation: for faster builds, set your `MAKEFLAGS` environment variable to use the full number of logical cores on your machine.
 
 Linux:
 

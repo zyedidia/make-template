@@ -15,6 +15,13 @@ CXXFLAGS += -ggdb3
 SANITIZE ?= 1
 endif
 
+FAST ?= 0
+ifeq ($(FAST),1)
+override O := -O3
+CFLAGS += -march=native -fomit-frame-pointer -DNDEBUG
+CXXFLAGS += -march=native -fomit-frame-pointer -DNDEBUG
+endif
+
 PTHREAD ?= 0
 ifeq ($(PTHREAD),1)
 CFLAGS += -pthread

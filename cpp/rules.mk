@@ -2,7 +2,7 @@
 CFLAGS := -std=c11 -W -Wall -Wextra -Wshadow $(DEFS) $(CFLAGS)
 CXXFLAGS := -std=c++17 -W -Wall -Wextra -Wshadow $(DEFS) $(CXXFLAGS)
 
-O ?= -O3
+O ?= -O2
 ifeq ($(filter 0 1 2 3 s g,$(O)),$(strip $(O)))
 override O := -O$(O)
 endif
@@ -13,6 +13,13 @@ override O := -Og
 CFLAGS += -ggdb3
 CXXFLAGS += -ggdb3
 SANITIZE ?= 1
+endif
+
+FAST ?= 0
+ifeq ($(FAST),1)
+override O := -O3
+CFLAGS += -march=native -fomit-frame-pointer -DNDEBUG
+CXXFLAGS += -march=native -fomit-frame-pointer -DNDEBUG
 endif
 
 PTHREAD ?= 0
