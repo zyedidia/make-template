@@ -37,3 +37,7 @@ MacOS:
 ```
 export MAKEFLAGS="-j$(sysctl -n hw.ncpu)"
 ```
+
+---
+
+Adapted from the CS61 section notes Makefile at https://github.com/cs61/cs61-sections.
