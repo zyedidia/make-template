@@ -13,6 +13,7 @@ override O := -Og
 CFLAGS += -ggdb3
 CXXFLAGS += -ggdb3
 SANITIZE ?= 1
+FAST = 0
 endif
 
 FAST ?= 0
