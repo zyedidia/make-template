@@ -5,9 +5,13 @@ ALLPROGRAMS = $(PROGRAMS)
 
 include rules.mk
 
-INCLUDEDIR = include
-INCLUDES = $(INCLUDEDIR)
-CFLAGS += -I$(INCLUDES)
+INCDIR = include
+INC = $(INCDIR)
+INC_PARAMS=$(foreach d, $(INC), -I$d)
+CFLAGS += $(INC_PARAMS)
+
+SRC = $(wildcard *.c)
+OBJ = $(SRC:.c=.o)
 
 %.o: %.c $(BUILDSTAMP)
 	$(CC) $(CFLAGS) $(O) $(DEPCFLAGS) -o $@ -c $<
@@ -15,10 +19,14 @@ CFLAGS += -I$(INCLUDES)
 main: main.o
 	$(CC) $(CFLAGS) $(LDFLAGS) $(O) -o $@ $^
 
+# for inspecting assembly
+%.s: %.c $(BUILDSTAMP)
+	$(CC) $(CFLAGS) $(O) $(DEPCFLAGS) -o $@ -S $<
+
 clean:
 	rm -rf $(ALLPROGRAMS) *.o $(DEPSDIR)
 
 format:
-	clang-format -i $(wildcard *.c) $(wildcard $(INCLUDEDIR)/*.h)
+	clang-format -i $(SRC) $(wildcard $(INCLUDEDIR)/*.h)
 
 .PHONY: all clean format
