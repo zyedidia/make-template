@@ -27,6 +27,6 @@ clean:
 	rm -rf $(ALLPROGRAMS) *.o *.s $(DEPSDIR)
 
 format:
-	clang-format -i $(SRC) $(wildcard $(INCLUDEDIR)/*.hh)
+	clang-format -i $(SRC) $(wildcard $(INCDIR)/*.hh)
 
 .PHONY: all clean format
