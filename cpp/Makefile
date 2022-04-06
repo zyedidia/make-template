@@ -1,7 +1,5 @@
-PROGRAMS = main
-all: $(PROGRAMS)
-
-ALLPROGRAMS = $(PROGRAMS)
+PROG = main
+all: $(PROG)
 
 include rules.mk
 
@@ -16,7 +14,7 @@ OBJ = $(SRC:.cc=.o)
 %.o: %.cc $(BUILDSTAMP)
 	$(CXX) $(CXXFLAGS) $(O) $(DEPCFLAGS) -o $@ -c $<
 
-main: $(OBJ)
+$(PROG): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(O) -o $@ $^
 
 # for inspecting assembly
