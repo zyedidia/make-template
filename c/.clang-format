@@ -1,1 +1,1 @@
-{BasedOnStyle: Chromium, IndentWidth: 4, SpaceAfterCStyleCast: true}
+{BasedOnStyle: Chromium, IndentWidth: 4, SpaceAfterCStyleCast: true, PointerAlignment: Right, AlwaysBreakAfterDefinitionReturnType: All, BreakBeforeBraces: Linux}
